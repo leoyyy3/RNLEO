@@ -1,3 +1,3 @@
-# react-simple-o2o-demo
+# node-react-simple-demo
 
 代码尚在开发中
