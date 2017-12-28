@@ -1,13 +1,12 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import { Route ,BrowserRouter,Switch} from 'react-router-dom'
+import { Route ,Switch} from 'react-router-dom'
 import Head from './subpage/Head'
 import Leftmenu from './subpage/Leftmenu'
 import {connect} from 'react-redux'
 
 import Home from '../Home'
 import Adduser from '../Adduser'
-import User from '../User'
 import Detail from '../Detail'
 import NotFound from '../404'
 
@@ -36,7 +35,6 @@ class Wlayout extends React.Component {
                       <Switch>
                         <Route exact path='/' component={Home} />
                         <Route path='/addUser' component={Adduser}/>
-                        <Route path='/User' component={User}/>
                         <Route path='/detail/:id' component={Detail}/>
                         <Route path='*' component={NotFound}/>
                       </Switch>

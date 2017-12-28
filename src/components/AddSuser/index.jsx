@@ -14,12 +14,15 @@ import {
     Button,
     Radio,
     AutoComplete,
-    Spin
+    Spin,
+    Upload
 } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
+
+import {post} from '../../fetch/post'
 
 // import './style.less'
 
@@ -29,7 +32,7 @@ class AddSuser extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
             svalue:"",
-            sage:0,
+            sage:"",
             sphone:null
         }
     }
@@ -50,6 +53,14 @@ class AddSuser extends React.Component {
         });
     }
 
+    normFile(e){
+        // console.log('Upload event:', e);
+        if (e.file.response && e.file.response.status) {
+            return e.file.response.filename;
+        }
+        return e && e.file //&& e.file.response && e.file.response.filename;
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
         // const { autoCompleteResult } = this.state;
@@ -66,10 +77,25 @@ class AddSuser extends React.Component {
         };
         return (
             <div style={styles.container}>
+            <FormItem
+              {...formItemLayout}
+              label="Upload"
+            >
+              {getFieldDecorator('userimg', {
+                //valuePropName: 'fileList',
+                getValueFromEvent: this.normFile.bind(this),
+              })(
+                <Upload name="logo" action="/api/upload" listType="picture">
+                  <Button>
+                    <Icon type="upload" /> Click to upload
+                  </Button>
+                </Upload>
+              )}
+            </FormItem>
+
             <Form onSubmit={this.handleSubmit.bind(this)}>
                 <FormItem {...formItemLayout} label="员工姓名" hasFeedback>
                     {getFieldDecorator('username', {
-                        initialValue:"123123123132",
                         rules: [{required: true, message: '请填写员工姓名!'}]
                     })(
                         <div style={styles.searchWrap}>
@@ -108,7 +134,6 @@ class AddSuser extends React.Component {
 
                 <FormItem {...formItemLayout} label="员工手机号" hasFeedback>
                     {getFieldDecorator('phone', {
-                        initialValue:"123123123132",
                         rules: [{required: true, message: '请填写员工手机号!'}],
                     })(
                         <div style={styles.searchWrap}>

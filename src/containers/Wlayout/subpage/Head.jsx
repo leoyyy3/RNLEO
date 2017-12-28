@@ -6,7 +6,7 @@ const { Header, Content, Sider } = Layout;
 
 import {connect} from 'react-redux'
 
-class Wlayout extends React.Component {
+class Head extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
@@ -14,8 +14,8 @@ class Wlayout extends React.Component {
     render() {
         return (
                 <Header className="header">
-                  <div className="logo" style={{color:"#fff"}}>LOGO</div>
-                  <Menu
+                  <div className="logo" style={{color:"#fff"}}>RNLEO</div>
+                  {/*<Menu
                     theme="dark"
                     mode="horizontal"
                     defaultSelectedKeys={['2']}
@@ -24,7 +24,7 @@ class Wlayout extends React.Component {
                     <Menu.Item key="1">nav 1</Menu.Item>
                     <Menu.Item key="2">nav 2</Menu.Item>
                     <Menu.Item key="3">nav 3</Menu.Item>
-                  </Menu>
+                  </Menu>*/}
                 </Header>
            
         )
@@ -46,4 +46,4 @@ function mapDispatchToProps(dispatch){
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Wlayout)
+)(Head)

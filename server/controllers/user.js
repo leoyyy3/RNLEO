@@ -1,3 +1,4 @@
+let path = require('path');
 const User = require('../models/User')
 
 
@@ -5,8 +6,6 @@ let list = async (ctx,next)=>{
 	
 	let msg = "";
 	let status = 0
-
-	// console.log('---------',ctx.request.body)
 	
 	let result = [];
 
@@ -41,6 +40,7 @@ let add = async (ctx,next)=>{
     let username = ctx.request.body.username || "";
     let age = ctx.request.body.age || "";
     let phone = ctx.request.body.phone || "";
+    let userimg = ctx.request.body.userimg || "";
 
     let now = Math.ceil(Math.random()*40);
 
@@ -48,7 +48,8 @@ let add = async (ctx,next)=>{
             id: now,
             username: username,
             age: age,
-            phone : phone
+            phone : phone,
+            userimg : userimg
         });
 
     status = result.length?1:0
@@ -57,6 +58,40 @@ let add = async (ctx,next)=>{
         msg:msg,
         result:result,
         status:status
+    }
+}
+
+let deleteUser = async (ctx,next)=>{
+    let msg = "";
+    let status = 0;
+    let result = []
+
+    let id = ctx.request.body.id || "";
+    
+    let now = Math.ceil(Math.random()*40);
+
+    let user = await User.findOne({
+        where: {
+            id: id
+        }
+    });
+
+    if(!user){
+        ctx.response.body = {
+            msg:'用户不存在',
+            result:result,
+            status:0
+        }
+        return
+    }
+
+
+    let re = await user.destroy()
+
+    ctx.response.body = {
+        msg:'删除成功',
+        result:result,
+        status:1
     }
 }
 
@@ -89,7 +124,6 @@ let update = async (ctx,next)=>{
     //          id:id
     //     });
     //     
-    console.log('-------------------',result)
     status = 1
 
     ctx.response.body = {
@@ -100,8 +134,20 @@ let update = async (ctx,next)=>{
 }
 
 
+let up = async (ctx,next)=>{
+    let file = ctx.req.file
+    let filename = "http://localhost:8000/"+file.path;
+    ctx.body = {
+        filename: filename,
+        status:1
+    }
+}
+
+
 module.exports = {
 	'POST /api/getUserList' : list,
     'POST /api/updateUser' : update,
-    'POST /api/addUser' : add
+    'POST /api/addUser' : add,
+    'UPLOAD /api/upload' : up,
+    'POST /api/deleteUser' : deleteUser
 }

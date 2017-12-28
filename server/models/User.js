@@ -7,6 +7,7 @@ module.exports = defineModel('user',{
 	},
 	age:Sequelize.INTEGER,
 	phone:Sequelize.INTEGER,
+	userimg:Sequelize.STRING(200)
 	// salary:Sequelize.FLOAT(8,2)
 },{
 	freezeTableName:true,

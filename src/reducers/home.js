@@ -44,3 +44,25 @@ export function updateuserlist(state = initialState, action) {
             return state
     }
 }
+
+export function deleteUser(state = initialState, action) {
+    switch (action.type) {
+        case actionTypes.DELETE_USER_START:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case actionTypes.DELETE_USER_SUCCESS:
+            return Object.assign({}, state, {
+                data:action.data,
+                isFetching: false
+            });
+        case actionTypes.DELETE_USER_ERROR:
+            return Object.assign({}, state, {
+                isFetching: false
+            });
+        default:
+            return state
+    }
+}
+
+

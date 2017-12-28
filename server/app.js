@@ -2,6 +2,7 @@ const Koa = require('koa');
 const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser')
 const fs = require('fs')
+const serve = require("koa-static");
 
 const User = require('./models/User')
 
@@ -12,11 +13,15 @@ const controller = require('./controller')
 
 const app = new	Koa()
 
+app.use(serve('.'));
+app.use(serve(__dirname + '/resource/images'));
+
 app.use(bodyParser())
 
 app.use(controller())
+
 app.listen(8000);
-console.log('server is started')
+console.log('server is started at port 8000')
 
 
 

@@ -5,7 +5,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { getAdData } from '../../../fetch/home/test'
 import HomeAd from '../../../components/HomePage'
 // import UpdatePop from '../../../components/AddSuser'
-import UpdatePop from '../../../components/homeAd/UpdatePop'
+import UpdatePop from '../../../components/HomePage/UpdatePop'
 
 class Ad extends React.Component {
     constructor(props, context) {
@@ -28,10 +28,10 @@ class Ad extends React.Component {
     }
 
     edit(data){
-
         this.setState({editData:data})
         this.setState({visible:true})
     }
+
 
     updateUser(data){
         this.props.updateUser(data,()=>{
@@ -46,6 +46,7 @@ class Ad extends React.Component {
             	<HomeAd 
                     data={this.props.userlist.data}
                     edit={this.edit.bind(this)}
+                    delete={this.props.delete}
                 />
                 <Modal
                   title="Basic Modal"
@@ -62,5 +63,5 @@ class Ad extends React.Component {
 }
 
 // 使用 require.ensure 异步加载，还不支持 ES6 的 export 
-export default Ad
-// module.exports = NotFound
+// export default Ad
+module.exports = Ad

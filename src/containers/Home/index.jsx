@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 // import Category from '../../components/cateGory'
 import Ad from './subpage/Ad'
 
-import {getUserListAction,updateUserAction} from '../../actions/home'
+import {getUserListAction,updateUserAction,deleteAction} from '../../actions/home'
 
 import {connect} from 'react-redux'
 
@@ -25,6 +25,14 @@ class Home extends React.Component {
         this.props.dispatch(getUserListAction())
     }
 
+    deleteUser(data){
+        console.log('delete',data)
+        let id = data.id;
+        this.props.dispatch(deleteAction({id:id},()=>{
+            this.props.dispatch(getUserListAction())
+        }))
+    }
+
     render() {
         return (
             <div>
@@ -32,6 +40,7 @@ class Home extends React.Component {
                     userlist={this.props.userlist}
                     updateUser={this.updateUser.bind(this)}
                     getUserList={this.getUserList.bind(this)}
+                    delete={this.deleteUser.bind(this)}
                 />
             </div>
         )

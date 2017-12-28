@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import userinfo from './userinfo'
 import loginInfo from './login'
-import {userlist,updateuserlist} from './home'
+import {userlist,updateuserlist,deleteUser} from './home'
 import {adduserInfo} from './adduser'
 
 let rootReducer = combineReducers({
@@ -9,7 +9,8 @@ let rootReducer = combineReducers({
     loginInfo,
     userlist,
     adduserInfo,
-    updateuserlist
+    updateuserlist,
+    deleteUser
 })
 
 export default rootReducer

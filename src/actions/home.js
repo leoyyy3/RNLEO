@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants'
 import {post} from '../fetch/post'
-import {GET_USER_LIST,POST_UPDATE_USER} from '../fetch/config'
+import {GET_USER_LIST,POST_UPDATE_USER,POST_DELETE_USER} from '../fetch/config'
 
 export function getUserListStart(data) {
     return {
@@ -44,6 +44,27 @@ export function updateUserError(data) {
     }
 }
 
+export function deleteStart(data) {
+    return {
+        type: actionTypes.DELETE_USER_START,
+        data
+    }
+}
+
+export function deleteSuccess(data) {
+    return {
+        type: actionTypes.DELETE_USER_SUCCESS,
+        data
+    }
+}
+
+export function deleteError(data) {
+    return {
+        type: actionTypes.DELETE_USER_ERROR,
+        data
+    }
+}
+
 export function getUserListAction(data) {
     return dispatch => {
     	dispatch(getUserListStart())
@@ -66,11 +87,31 @@ export function updateUserAction(data,successCall) {
             return res.json()
         }).then(res => {
             if(res.status === 1){
-                dispatch(getUserListSuccess(res.result));
+                dispatch(updateUserSuccess(res.result));
                 successCall()
             }else{
-                dispatch(getUserListError(res.msg))
+                dispatch(updateUserError(res.msg))
             }
         })
     }
 }
+
+export function deleteAction(data,successCall) {
+    return dispatch => {
+        dispatch(deleteStart())
+        post(POST_DELETE_USER,data).then(res=>{
+            return res.json()
+        }).then(res => {
+            if(res.status === 1){
+                dispatch(deleteSuccess(res.result));
+                successCall()
+            }else{
+                dispatch(deleteError(res.msg))
+            }
+        })
+    }
+}
+
+
+
+

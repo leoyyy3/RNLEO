@@ -20,14 +20,15 @@ class homeAd extends React.Component {
             itemLayout="horizontal"
             dataSource={this.props.data}
             renderItem={item => (
-              <List.Item>
+              <List.Item key={item.id}>
                 <List.Item.Meta
-                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  avatar={<Avatar src={item.userimg}/>}
                   title={<a href="">{item.username}</a>}
                   description={`员工年龄:${item.age} ，员工手机号:${item.phone}`}
                 />
                 <a href="javascript:;" onClick={()=>{this.props.edit(item)}}>编辑</a>&nbsp;|&nbsp;
-                <a>更多</a>
+                <a>更多</a>&nbsp;|&nbsp;
+                <a href="javascript:;" onClick={()=>{this.props.delete(item)}}>删除</a>
               </List.Item>
             )}
           />

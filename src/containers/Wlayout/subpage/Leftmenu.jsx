@@ -13,10 +13,6 @@ class Leftmenu extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
-    tiao(){
-      this.props.history.push("/addUser")
-    }
-
     render() {
         return (
               <Sider width={200} style={{ background: '#fff' }}>
@@ -26,7 +22,7 @@ class Leftmenu extends React.Component {
                   defaultOpenKeys={['sub1']}
                   style={{ height: '100%', borderRight: 0 }}
                 >
-                  <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
+                  <SubMenu key="sub1" title={<span><Icon type="user" />员工管理</span>}>
                     <Menu.Item key="1">
                       <Link to="/">员工列表</Link>
                     </Menu.Item>
@@ -34,10 +30,10 @@ class Leftmenu extends React.Component {
                       <Link to="/addUser">添加员工</Link>
                     </Menu.Item>
                   </SubMenu>
-                  <SubMenu key="sub2" title={<span><Icon type="laptop" />subnav 2</span>}>
+                  {/*<SubMenu key="sub2" title={<span><Icon type="laptop" />subnav 2</span>}>
                     <Menu.Item key="5">option5</Menu.Item>
                     <Menu.Item key="6">option6</Menu.Item>
-                  </SubMenu>
+                  </SubMenu>*/}
                 </Menu>
               </Sider>
         )

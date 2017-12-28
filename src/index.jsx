@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { Route ,BrowserRouter,Router,HashRouter,history} from 'react-router-dom'
+import { Route ,BrowserRouter,Router,HashRouter} from 'react-router-dom'
 // import { updateLocation, history } from './location'
 import configureStore from './store/configureStore'
 
@@ -11,6 +11,8 @@ import 'antd/dist/antd.css'
 
 import App from './containers'
 import Login from './containers/Login'
+
+import Wlayout from './containers/Wlayout'
 
 
 // 创建 Redux 的 store 对象
@@ -23,11 +25,11 @@ import RouteMap from './router/routeMap'
 
 render(
     <Provider store={store}>
-    	<HashRouter history={history}>
+    	<BrowserRouter>
 	        {/*<App />*/}
 
-	        	<Route  component={App}/>
-        </HashRouter>
+	        	<Route  component={Wlayout}/>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 )
