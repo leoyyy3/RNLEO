@@ -2,9 +2,8 @@ import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 // import Category from '../../components/cateGory'
 import Ad from './subpage/Ad'
-// import Wmap from './subpage/Wmap'
-// import Lmap from './subpage/Lmap'
-// import Rect from './subpage/Rect'
+
+import {getUserListAction,updateUserAction} from '../../actions/home'
 
 import {connect} from 'react-redux'
 
@@ -13,10 +12,27 @@ class Home extends React.Component {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
+
+    componentDidMount(){
+        this.getUserList()
+    }
+
+    updateUser(data,successCall){
+        this.props.dispatch(updateUserAction(data,successCall))
+    }
+
+    getUserList(){
+        this.props.dispatch(getUserListAction())
+    }
+
     render() {
         return (
             <div>
-                <Ad />
+                <Ad 
+                    userlist={this.props.userlist}
+                    updateUser={this.updateUser.bind(this)}
+                    getUserList={this.getUserList.bind(this)}
+                />
             </div>
         )
     }
@@ -24,17 +40,11 @@ class Home extends React.Component {
 
 function mapStateToProps(state){
     return {
-        userinfo:state.userinfo
+        userlist:state.userlist
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return {
-        
-    }
-}
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Home)

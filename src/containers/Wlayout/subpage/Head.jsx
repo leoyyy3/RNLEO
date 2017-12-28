@@ -14,7 +14,7 @@ class Wlayout extends React.Component {
     render() {
         return (
                 <Header className="header">
-                  <div className="logo" />
+                  <div className="logo" style={{color:"#fff"}}>LOGO</div>
                   <Menu
                     theme="dark"
                     mode="horizontal"

@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { Route ,BrowserRouter,Switch} from 'react-router-dom'
+import { Route ,BrowserRouter,Router,HashRouter,history} from 'react-router-dom'
+// import { updateLocation, history } from './location'
 import configureStore from './store/configureStore'
 
 import './static/css/common.less'
@@ -22,10 +23,11 @@ import RouteMap from './router/routeMap'
 
 render(
     <Provider store={store}>
-    	<BrowserRouter>
-	        <App />
-	        	{/*<Route path='/login' component={Login}/>*/}
-        </BrowserRouter>
+    	<HashRouter history={history}>
+	        {/*<App />*/}
+
+	        	<Route  component={App}/>
+        </HashRouter>
     </Provider>,
     document.getElementById('root')
 )

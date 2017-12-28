@@ -1,5 +1,6 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
+import {BrowserRouter} from 'react-router-dom'
 import localStore from '../util/localStore'
 
 import {bindActionCreators} from 'redux'
@@ -18,7 +19,9 @@ class App extends React.Component {
     }
     render() {
         return (
+            
             <div style={{height:"100%"}}>
+            {/*<BrowserRouter>*/}
                 {this.state.initDone?<Wlayout />:<p>正在加载中。。。。。。</p>}
             </div>
         )
