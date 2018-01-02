@@ -11,8 +11,10 @@ let list = async (ctx,next)=>{
 
     let users = await User.findAll({
         where: {
+
             // username: name
-        }
+        },
+        order: 'updatedAt Desc'
     });
     
     // result = JSON.stringify(users)
@@ -52,7 +54,7 @@ let add = async (ctx,next)=>{
             userimg : userimg
         });
 
-    status = result.length?1:0
+    status = result?1:0
 
     ctx.response.body = {
         msg:msg,

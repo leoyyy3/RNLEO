@@ -1,3 +1,9 @@
+let baseUrl = 'http://localhost:8090';
+
+if(!__DEV__){
+	baseUrl = 'http://localhost:8000'
+}
+
 export const POST_LOGIN = '/api/login'
 
 export const GET_USER_LIST = '/api/getUserList'

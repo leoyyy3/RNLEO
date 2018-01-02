@@ -35,6 +35,14 @@ module.exports = {
         ]
     },
 
+    babel: {
+        presets: ['es2015', 'stage-0', 'react'],
+        plugins: ['transform-runtime', ['import', {
+          libraryName: 'antd',
+          style: 'css'
+        }]]
+    },
+
     eslint: {
         configFile: '.eslintrc' // Rules for eslint
     },

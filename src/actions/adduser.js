@@ -23,7 +23,7 @@ export function addUserError(data) {
     }
 }
 
-export function addUserAction(data) {
+export function addUserAction(data,successCal) {
     return dispatch => {
     	dispatch(addUserStart())
     	post(POST_ADD_USER,data).then(res=>{
@@ -31,6 +31,7 @@ export function addUserAction(data) {
     	}).then(res => {
     		if(res.status === 1){
                 dispatch(addUserSuccess(res.result))
+                successCal()
     		}else{
     			dispatch(addUserError(res.msg))
     		}

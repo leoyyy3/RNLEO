@@ -1,12 +1,13 @@
+const fs = require('fs')
 const User = require('../models/User')
 
-
-var title = async (ctx,next)=>{
+var index = async (ctx,next)=>{
 	var name = ctx.params.name;
-	ctx.response.body = `<h1>hello, ${name}</h1>`
+	ctx.type = "html"
+	ctx.response.body = fs.createReadStream('build/index.html')
 }
 
-var index = async (ctx,next)=>{
+var login = async (ctx,next)=>{
 	let name = ctx.request.body.username || "";
 	let pwd = ctx.request.body.password || "";
 
@@ -50,6 +51,7 @@ var index = async (ctx,next)=>{
 
 
 module.exports = {
-	'GET /hello/:name': title,
-	'POST /api/login':index
+	'GET /': index,
+	'GET /addUser': index,
+	'POST /api/login':login
 }

@@ -3,10 +3,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {
     Form,
     Input,
-    InputNumber,
+    // InputNumber,
     Tooltip,
     Icon,
-    Cascader,
+    // Cascader,
     Select,
     Row,
     Col,
@@ -44,7 +44,7 @@ class AddSuser extends React.Component {
 
         validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('--------',getFieldsValue())
+                // console.log('--------',getFieldsValue())
                 this.props.addUserFun(getFieldsValue())
                 // console.log('Received values of form: ', values);
                 // console.log(getFieldsValue())

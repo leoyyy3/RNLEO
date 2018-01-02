@@ -2,6 +2,7 @@ import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 // import Category from '../../components/cateGory'
 import Ad from './subpage/Ad'
+import {message} from 'antd'
 
 import {getUserListAction,updateUserAction,deleteAction} from '../../actions/home'
 
@@ -29,7 +30,8 @@ class Home extends React.Component {
         console.log('delete',data)
         let id = data.id;
         this.props.dispatch(deleteAction({id:id},()=>{
-            this.props.dispatch(getUserListAction())
+            this.props.dispatch(getUserListAction());
+            message.success('用户删除成功！');
         }))
     }
 

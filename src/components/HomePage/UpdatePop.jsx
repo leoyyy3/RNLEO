@@ -3,10 +3,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {
     Form,
     Input,
-    InputNumber,
+    // InputNumber,
     Tooltip,
     Icon,
-    Cascader,
+    // Cascader,
     Select,
     Row,
     Col,
@@ -35,7 +35,7 @@ class UpdatePop extends React.Component {
         }
     }
 
-    componentWillReceiveProps(){console.log('willreceive')
+    componentWillReceiveProps(){
         if(this.state.flag){
             this.props.form.setFieldsValue({
                 username: this.props.editData.username,

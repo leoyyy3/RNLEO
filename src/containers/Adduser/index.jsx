@@ -1,6 +1,7 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-// import Category from '../../components/cateGory'
+import {message} from 'antd'
+
 import AddSuser from '../../components/AddSuser'
 
 import {addUserAction} from '../../actions/adduser'
@@ -18,7 +19,9 @@ class Adduser extends React.Component {
     }
 
     addUserFun(data){
-        this.props.dispatch(addUserAction(data))
+        this.props.dispatch(addUserAction(data,()=>{
+            message.success('用户添加成功！')
+        }))
     }
 
     render() {

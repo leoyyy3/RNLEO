@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button } from 'antd';
+import { Modal, Button, message} from 'antd';
 
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { getAdData } from '../../../fetch/home/test'
@@ -35,8 +35,9 @@ class Ad extends React.Component {
 
     updateUser(data){
         this.props.updateUser(data,()=>{
+            message.success('用户更新成功！');
             this.setState({visible:false})
-            this.props.getUserList()
+            this.props.getUserList();
         })
     }
 

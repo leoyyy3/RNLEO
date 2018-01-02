@@ -15,13 +15,12 @@ module.exports = {
       'redux', 
       'es6-promise', 
       'whatwg-fetch', 
-      'immutable'
     ]
   },
   output: {
     path: __dirname + "/build",
     filename: "[name].[chunkhash:8].js",
-    publicPath: './'
+    publicPath: '/build/'
   },
 
   resolve:{
@@ -37,7 +36,7 @@ module.exports = {
           // exclude: /node_modules/, 
           loader: ExtractTextPlugin.extract('style', 'css!postcss') 
         },
-        { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000&name=img/[name].[chunkhash:8].[ext]' },
+        { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000&name=../images/[name].[ext]' },
         // { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000&name=fonts/[name].[chunkhash:8].[ext]'}
         {test: /\.(eot|svg|ttf|woff)/, loader: 'file?name=fonts/[hash].[ext]'}
     ]
@@ -45,6 +44,14 @@ module.exports = {
   postcss: [
     require('autoprefixer')
   ],
+
+  babel: {
+        presets: ['es2015', 'stage-0', 'react'],
+        plugins: ['transform-runtime', ['import', {
+          libraryName: 'antd',
+          style: 'css'
+        }]]
+    },
 
   plugins: [
     // webpack 内置的 banner-plugin

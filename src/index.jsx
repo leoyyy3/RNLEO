@@ -7,7 +7,7 @@ import configureStore from './store/configureStore'
 
 import './static/css/common.less'
 import './static/css/font.css'
-import 'antd/dist/antd.css'
+// import 'antd/dist/antd.css'
 
 import App from './containers'
 import Login from './containers/Login'

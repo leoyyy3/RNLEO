@@ -15,6 +15,8 @@ const app = new	Koa()
 
 app.use(serve('.'));
 app.use(serve(__dirname + '/resource/images'));
+app.use(serve(__dirname + '/build'));
+app.use(serve(__dirname + '/images'));
 
 app.use(bodyParser())
 

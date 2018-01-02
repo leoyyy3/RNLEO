@@ -1,7 +1,7 @@
 *{margin:0;padding:0}
 html{height:100%;position:relative;}
 body{
-	background:url(../images/login_bg.jpg) no-repeat;
+	background:url('../images/loginbg.jpg') no-repeat;
 	height:100%;
 	background-size:cover;
 }
