@@ -20,7 +20,7 @@ class Adduser extends React.Component {
 
     addUserFun(data){
         this.props.dispatch(addUserAction(data,()=>{
-            message.success('用户添加成功！')
+            message.success('用户添加成功')
         }))
     }
 

@@ -15,42 +15,79 @@ module.exports = {
     },
 
     resolve:{
-        extensions:['', '.js','.jsx']
+        extensions:['*', '.js','.jsx']
     },
 
     module: {
+        rules: [
+            { 
+                test: /\.(js|jsx)$/, 
+                exclude: /node_modules/, 
+                loader: "babel-loader",
+                options: {
+                  presets: ['es2015', 'stage-0', 'react'],
+                  plugins: ['transform-runtime', ['import', {
+                      libraryName: 'antd',
+                      style: 'css'
+                    }]
+                  ]
+                }, 
+            },
+            { test: /\.less$/, exclude: /node_modules/,
+                use: [
+                    {loader:'style-loader'},
+                    {loader:'css-loader'},
+                    {loader:'postcss-loader'},
+                    {loader:'less-loader'}
+                ] 
+            },
+            { test: /\.css$/, 
+                // exclude: /node_modules/, 
+                use: [
+                    {loader:'style-loader'},
+                    {loader:'css-loader'},
+                    {loader:'postcss-loader'}
+                ] 
+            },
+            { test:/\.(png|gif|jpg|jpeg|bmp)$/i, 
+                use:[
+                    {loader:'url-loader?limit=5000'},
+                ]
+                },  // 限制大小5kb
+            { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, use:'url-loader?limit=5000'} // 限制大小小于5k
+        ]
         // preLoaders: [
         //     // 报错 ？？？？？
         //     {test: /\.(js|jsx)$/, loader: "eslint-loader", exclude: /node_modules/}
         // ],
-        loaders: [
-            { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel' },
-            { test: /\.less$/, exclude: /node_modules/, loader: 'style!css!postcss!less' },
-            { test: /\.css$/, 
-                // exclude: /node_modules/, 
-                loader: 'style!css!postcss' 
-            },
-            { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000' },  // 限制大小5kb
-            { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'} // 限制大小小于5k
-        ]
+        // loaders: [
+        //     { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel' },
+        //     { test: /\.less$/, exclude: /node_modules/, loader: 'style!css!postcss!less' },
+        //     { test: /\.css$/, 
+        //         // exclude: /node_modules/, 
+        //         loader: 'style!css!postcss' 
+        //     },
+        //     { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000' },  // 限制大小5kb
+        //     { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'} // 限制大小小于5k
+        // ]
     },
 
-    babel: {
-        presets: ['es2015', 'stage-0', 'react'],
-        plugins: ['transform-runtime', ['import', {
-          libraryName: 'antd',
-          style: 'css'
-        }]]
-    },
+    // babel: {
+    //     presets: ['es2015', 'stage-0', 'react'],
+    //     plugins: ['transform-runtime', ['import', {
+    //       libraryName: 'antd',
+    //       style: 'css'
+    //     }]]
+    // },
 
-    eslint: {
-        configFile: '.eslintrc' // Rules for eslint
-    },
+    // eslint: {
+    //     configFile: '.eslintrc' // Rules for eslint
+    // },
 
-    postcss: [
-        require('autoprefixer') //调用autoprefixer插件，例如 display: flex
-    ],
-    devtool: 'source-map',
+    // postcss: [
+    //     require('autoprefixer') //调用autoprefixer插件，例如 display: flex
+    // ],
+    devtool: 'source-maps',
 
     plugins: [
         // html 模板插件
@@ -82,7 +119,7 @@ module.exports = {
           }
         },
         contentBase: "./public", //本地服务器所加载的页面所在的目录
-        colors: true, //终端中输出结果为彩色
+        // colors: true, //终端中输出结果为彩色
         historyApiFallback: true, //不跳转
         inline: true, //实时刷新
         hot: true  // 使用热加载插件 HotModuleReplacementPlugin
