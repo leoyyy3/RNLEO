@@ -23,6 +23,7 @@ module.exports = {
   output: {
     path: __dirname + "/build",
     filename: "[name].[chunkhash:8].js",
+    chunkFilename: '[name]-[id].[chunkhash:8].bundle.js',
     publicPath: '/build/'
   },
 
@@ -71,10 +72,15 @@ module.exports = {
                 }),
             },
             { test:/\.(png|gif|jpg|jpeg|bmp)$/i, 
-                use:[
-                    {loader:'url-loader?limit=5000'},
-                ]
-                },  // 限制大小5kb
+              use:[
+                  {
+                    loader:'url-loader?limit=5000&name=build/[hash:8].[name].[ext]',
+                    options: {
+                      publicPath:'/'
+                    }
+                  },
+              ]
+            },  // 限制大小5kb
             { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, use:'url-loader?limit=5000'} // 限制大小小于5k
         ]
   },

@@ -40,9 +40,9 @@ class Home extends React.Component {
             <div>
                 <Ad 
                     userlist={this.props.userlist}
-                    updateUser={this.updateUser.bind(this)}
-                    getUserList={this.getUserList.bind(this)}
-                    delete={this.deleteUser.bind(this)}
+                    updateUser={this::this.updateUser}
+                    getUserList={this::this.getUserList}
+                    delete={this::this.deleteUser}
                 />
             </div>
         )
