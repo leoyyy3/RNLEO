@@ -1,4 +1,6 @@
 # node-react-simple-demo
 
-代码尚在开发中
-===
+=
+
+###后端采用node，前度采用react+react-router
+###分页按需加载
