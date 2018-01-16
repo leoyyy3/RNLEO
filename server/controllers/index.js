@@ -52,6 +52,7 @@ var login = async (ctx,next)=>{
 
 module.exports = {
 	'GET /': index,
+	'GET /login': index,
 	'GET /addUser': index,
 	'POST /api/login':login
 }

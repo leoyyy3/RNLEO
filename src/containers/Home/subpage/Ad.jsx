@@ -46,7 +46,7 @@ class Ad extends React.Component {
         	<div>
             	<HomeAd 
                     data={this.props.userlist.data}
-                    edit={this.edit.bind(this)}
+                    edit={this::this.edit}
                     delete={this.props.delete}
                 />
                 <Modal
