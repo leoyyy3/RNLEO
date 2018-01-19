@@ -4,6 +4,7 @@ const User = require('../models/User')
 var index = async (ctx,next)=>{
 	var name = ctx.params.name;
 	ctx.type = "html"
+	ctx.cookies.set('view', "123123123");
 	ctx.response.body = fs.createReadStream('build/index.html')
 }
 
