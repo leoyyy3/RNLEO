@@ -29,12 +29,8 @@ import RouteMap from './router/routeMap'
 render(
     <Provider store={store}>
     <BrowserRouter>
-    	{/*<Router>*/}
-	        {/*<App />*/}
-	        {/*<RouteMap />*/}
-	        	<Route  component={Wlayout}/>
-        {/*</Router>*/}
-        </BrowserRouter>
+	    <Route  component={Wlayout}/>
+    </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 )

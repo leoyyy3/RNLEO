@@ -10,9 +10,9 @@ class homeAd extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
-    // edit(data){
-    //   console.log('edit',data)
-    // }
+    test(data){
+      console.log('edit',data)
+    }
 
     render() {
         return (
