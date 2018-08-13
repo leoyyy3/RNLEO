@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import { Modal, Button, message} from 'antd';
 
 import PureRenderMixin from 'react-addons-pure-render-mixin'
@@ -45,7 +44,7 @@ class Ad extends React.Component {
     render() {
         return (
         	<div>
-            	<HomeAd
+            	<HomeAd 
                     data={this.props.userlist.data}
                     edit={this::this.edit}
                     delete={this.props.delete}
@@ -64,9 +63,6 @@ class Ad extends React.Component {
     }
 }
 
-Ad.propTypes = {
-    userlist: PropTypes.object
-}
-// 使用 require.ensure 异步加载，还不支持 ES6 的 export
+// 使用 require.ensure 异步加载，还不支持 ES6 的 export 
 // export default Ad
 module.exports = Ad

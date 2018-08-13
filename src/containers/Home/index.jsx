@@ -38,13 +38,12 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Ad
+                <Ad 
                     userlist={this.props.userlist}
                     updateUser={this::this.updateUser}
                     getUserList={this::this.getUserList}
                     delete={this::this.deleteUser}
-                >
-                </Ad>
+                />
             </div>
         )
     }
